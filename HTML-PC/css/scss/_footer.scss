@@ -82,70 +82,44 @@
 	.main-footer--bottom .col-lg:nth-of-type(2n+1) {clear: both;}
 	.main-footer .footer-col {margin-bottom: 40px;}
 }
-/* 3.3 - Scroll to top */
-button.scroltop {
-	height: 40px;  
-	width: 40px;
-	background:#00bed8;  
-	border:none;
-	position: absolute;   
-	right: 15px;   
-	bottom:0;
-	text-transform:uppercase;
-	margin:0; 
-	padding:0;    
-	cursor: pointer;    
-	display: inline-block;    
-	text-align:center;  
-	z-index:88;
-	color: #fff;
-	overflow: hidden;
-	outline: none;
+
+/* Style for scroll-top button */
+.backToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    border: none;
+    color: #fff;
+	text-align: center;
+	line-height: 40px;
+    transition: 0.5s;
+    cursor: pointer;
+	background: #00bed8;
 }
-button.scroltop span{
-	position: relative;
-	display: block;	
-	font-size: 24px;	
-	line-height: 24px;
-	animation:vibrate 2s linear 0s infinite;
-	-moz-animation: vibrate 2s linear 0s infinite;/* Firefox */
-	-webkit-animation: vibrate 2s linear 0s infinite;/* Safari and Chrome */
-	-o-animation: vibrate 2s linear 0s infinite;/* Opera */
+
+
+.backToTopBtn:hover {
+    opacity: 0.8;
 }
-@keyframes vibrate {
-	0% {top: 0px;}
-	25% {top: -3px;}
-	50% {top: 0px;}
-	75% {top: 3px;}
-	100% {top: 0px;}
+
+.backToTopBtn.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
-/* Firefox */
-@-moz-keyframes vibrate{
-	0% {top: 0px;}
-	25% {top: -3px;}
-	50% {top: 0px;}
-	75% {top: 3px;}
-	100% {top: 0px;}
-}
-/* Safari and Chrome */
-@-webkit-keyframes vibrate{
-	0% {top: 0px;}
-	25% {top: -3px;}
-	50% {top: 0px;}
-	75% {top: 3px;}
-	100% {top: 0px;}
-}  
-/* Opera */
-@-o-keyframes vibrate{
-	0% {top: 0px;}
-	25% {top: -3px;}
-	50% {top: 0px;}
-	75% {top: 3px;}
-	100% {top: 0px;}
-}
-@media only screen and (max-width:767px) {
-	button.scroltop {font-size:7px;	height:30px;width: 30px;line-height:16px;top: -40px;}
-	button.scroltop span {font-size: 10px; line-height: 10px;}
+
+.backToTopBtn:not(.active) {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 @media (max-width:767px) {
 	.main-footer--top .row-flex {
@@ -154,3 +128,13 @@ button.scroltop span{
 		flex-wrap: wrap;
 	}
 }
+.cta{
+	position: fixed;
+	right: 20px;
+	z-index: 10;
+	bottom: 20%;
+	li{
+		margin-bottom: 15px;
+	}
+}
+

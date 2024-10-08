@@ -9,96 +9,28 @@
     },
 
 });
-const swiperADS = new Swiper('.banner-cat', {
-    loop: false,
+const swiperService = new Swiper('.list-service-home', {
     pagination: false,
-    navigation: false,
-    slidesPerView: 1.5,
-    spaceBetween: 8,
-    breakpoints: {
-        540: {
-            slidesPerView: 1.5,
-        },
-        768: {
-            slidesPerView: 2.5,
-        },
-        992: {
-            slidesPerView: 4,
-        }
-    },
-
-});
-
-const swiperAds = new Swiper('.swiper-banner-ads', {
-    loop: false,
-    pagination: false,
-    navigation: false,
     slidesPerView: 1,
-    spaceBetween: 8,
+    spaceBetween: 20,
+    loop: false,
     breakpoints: {
         540: {
             slidesPerView: 1,
         },
-        992: {
+        768: {
             slidesPerView: 2,
-        }
-    }
-});
-
-const swiperClient = new Swiper('.swiper-client', {
-    loop: false,
-    pagination: false,
-    navigation: false,
-    slidesPerView: 3,
-    spaceBetween: 8,
-    breakpoints: {
-        540: {
-            slidesPerView: 3,
-        },
-        768: {
-            slidesPerView: 4.5,
         },
         992: {
-            slidesPerView: 6.5,
-        }
-    }
-});
-const swiperFlash = new Swiper('.section-flashsale .product-slide', {
-    loop: false,
-    pagination: false,
-    navigation: false,
-    spaceBetween: 15,
-    slidesPerView: 1.5,
-    breakpoints: {
-        540: {
-            slidesPerView: 2.5,
-        },
-        768: {
-            slidesPerView: 3.5,
-        },
-        1024: {
-            slidesPerView: 4.5,
-        },
-        1400: {
-            slidesPerView: 5,
+            slidesPerView: 3,
+            spaceBetween: 30,
         }
     },
     navigation: {
-        nextEl: '.product-slide .swiper-button-next',
-        prevEl: '.product-slide .swiper-button-prev',
+        nextEl: '.list-service-home .swiper-button-next',
+        prevEl: '.list-service-home .swiper-button-prev',
     },
-});
-$(function () {
-    $('.btn-filter').on('click', function () {
-        $('#productList').addClass('show-filter');
-    });
-    $('#closeFilter').on('click', function () {
-        $('#productList').removeClass('show-filter');
-    });
-    $('.list-tab-menu .sub-menu').on('click', function () {
-        $(this).toggleClass('active');
-    });
-   
+
 });
 
 // gallery
@@ -108,13 +40,17 @@ var swiperSmallThumb = new Swiper(".thumb-small", {
     freeMode: true,
     watchSlidesProgress: true,
     navigation: {
-        nextEl: '.thumb-small .swiper-button-next',
-        prevEl: '.thumb-small .swiper-button-prev',
+        nextEl: '.thumb-big .swiper-button-next',
+        prevEl: '.thumb-big .swiper-button-prev',
     },
 });
 var swiperBigThumb = new Swiper(".thumb-big", {
     spaceBetween: 15,
-    navigation: false,
+    navigation: {
+        nextEl: '.thumb-big .swiper-button-next',
+        prevEl: '.thumb-big .swiper-button-prev',
+    },
+
     thumbs: {
         swiper: swiperSmallThumb,
     },
@@ -171,24 +107,6 @@ $('select').each(function () {
     });
 });
 
-// hỗ trợ
-$(document).ready(function () {
-    $(".list-faq-v2 .item > .title-faq").on("click", function () {
-        if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            $(this)
-                .siblings(".answer")
-                .slideUp(300);
-        } else {
-            $(".list-faq-v2 .item > .title-faq").removeClass("active");
-            $(this).addClass("active");
-            $(".answer").slideUp(300);
-            $(this)
-                .siblings(".answer")
-                .slideDown(300);
-        }
-    });
-});
 
 // /////////////////////////////////////////////
 /* scroll menu top*/
@@ -307,3 +225,53 @@ function setAnimation ( _elem, _InOut ) {
         });
     });
 }
+
+// scroll top
+function scrollTop() {
+    if ($(window).scrollTop() > 500) {
+        $(".backToTopBtn").addClass("active");
+    } else {
+        $(".backToTopBtn").removeClass("active");
+    }
+}
+$(function () {
+    scrollTop();
+    $(window).on("scroll", scrollTop);
+
+    $(".backToTopBtn").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 1);
+        return false;
+    });
+});
+/* show desc product short*/
+var expandable_content_height = $('.expandable-toggle .description-productdetail').height();
+if(expandable_content_height > 130){
+    $('.expandable-toggle .description-productdetail').css({
+        "height": "130px",
+        "overflow": "hidden"
+    });
+}else{
+    $('.expandable-content_toggle').addClass('hidden');
+}
+$('body').on('click', '.js_expandable_content', function (e) {
+    if (!$('.expandable-toggle').hasClass('opened')) {		
+        $('.expandable-content_toggle').removeClass('btn-closemore').addClass('btn-viewmore').find('.expandable-content_toggle-text').html('Xem thêm');
+        var curHeight = $('.expandable-toggle .description-productdetail').height();
+        expandable_content_height = 135;
+        $('.expandable-toggle .description-productdetail').height(curHeight).animate({
+            height: expandable_content_height
+        }, 300,  function () {
+            $(this).parent().addClass('opened');
+        });
+        if ($(window).width() < 992) {
+            $('html, body').animate({
+                scrollTop: $(".product-content-desc").offset().top - 40
+            }, 250);
+        }
+    } 
+    else {
+        $('.expandable-toggle .description-productdetail').css('height', 'auto');
+        $('.expandable-toggle').removeClass('opened');
+        $('.expandable-content_toggle').removeClass('btn-viewmore').addClass('btn-closemore').find('.expandable-content_toggle-text').html('Rút gọn');
+    }
+}); 

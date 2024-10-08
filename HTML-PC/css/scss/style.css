@@ -607,7 +607,7 @@ em { font-style: italic; }
 /*======================================*/
 .bg-top {background-position: 50% -5px;background-size: cover;padding: 100px 0;}
 .banner-title-name {position: relative;}
-.banner-title-name h1, .banner-title-name span {font-size: 30px;line-height: 1.5;text-transform: uppercase;letter-spacing: 4px;font-weight: 500;margin-bottom: 0px;}
+.banner-title-name h1, .banner-title-name span {font-size: 50px;line-height: 1.5;font-weight: 600;margin-bottom: 0px;}
 .section.section-about-us {padding-bottom: 130px;}
 .m-about{position:relative;	z-index:2;margin: 0 50px;}
 .m-about:after{content: "";	position: absolute;	width: 100%;	height: 100%;	border: 10px solid #00bed8;	left: -50px;	bottom: -50px;	z-index: -1;}
